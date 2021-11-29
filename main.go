@@ -9,7 +9,15 @@ import (
 func main() {
 	d, err := dictionary.New("./badger")
 	handleErr(err)
-	d.Close()
+	defer d.Close()
+
+	err1 := d.Add("golang", "Best language ever")
+	if err1 != nil {
+		return
+	}
+	entry, _ := d.Get("golang")
+	fmt.Println(entry)
+
 }
 
 func handleErr(err error) {
