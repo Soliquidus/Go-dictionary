@@ -11,12 +11,14 @@ func main() {
 	handleErr(err)
 	defer d.Close()
 
-	err1 := d.Add("golang", "Best language ever")
+	err1 := d.Add("python", "An interpreted language")
 	if err1 != nil {
 		return
 	}
-	entry, _ := d.Get("golang")
-	fmt.Println(entry)
+	words, entries, _ := d.List()
+	for _, words := range words {
+		fmt.Println(entries[words])
+	}
 
 }
 
